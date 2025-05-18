@@ -1,0 +1,13 @@
+@use '../mixins' as *;
+
+.header {
+  margin-bottom: remy(15);
+  .logo {
+    width: remy(267);
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+    }
+  }
+}

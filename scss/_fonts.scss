@@ -1,0 +1,8 @@
+@use 'mixins' as *;
+
+@include font-face('Montserrat', 'Montserrat/Montserrat-Regular', normal, 400);
+@include font-face('Montserrat', 'Montserrat/Montserrat-Medium', normal, 500);
+@include font-face('Montserrat', 'Montserrat/Montserrat-Bold', normal, 700);
+@include font-face('Montserrat', 'Montserrat/Montserrat-ExtraBold', normal, 800);
+
+@include font-face('Suez One', 'Suez_One/SuezOne-Regular', normal, 400);

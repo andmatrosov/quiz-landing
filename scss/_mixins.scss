@@ -1,0 +1,27 @@
+@use "sass:math";
+
+$maxWidth: 1280;
+@mixin adaptiv-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $maxWidth - 320;
+  font-size: calc(#{$mobSize + px} + #{$addSize} * ((min(100vw, 100vh) - 320px) / #{$maxWidth}));
+}
+
+@mixin font-face($ff, $path, $fs, $fw, $formats: woff2) {
+  $src: null;
+  @each $format in $formats {
+    $src: append($src, url("../fonts/" + quote($path) + "." + $format) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: $ff;
+    src: $src;
+    font-style: $fs;
+    font-weight: $fw;
+    font-display: swap;
+  }
+}
+
+@function remy ($px) {
+  @return math.div($px, 11.604) + rem;
+}

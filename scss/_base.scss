@@ -1,0 +1,142 @@
+@use 'mixins' as *;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  @include adaptiv-font(24, 10);
+  line-height: 1.5;
+  scroll-behavior: smooth;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+html {
+  overflow: hidden;
+  background-image: var(--bg-gradient);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100% ;
+}
+
+body {
+  padding: 0.985rem 0 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.container {
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+b,
+strong {
+  font-weight: 800;
+}
+
+.d-none {
+  display: none!important;
+}
+
+.swiper {
+  &-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--color-dark-80);
+    border-radius: remy(15);
+    position: relative;
+    padding: remy(17);
+    bottom: 0!important;
+
+    &-bullet {
+      $bullet: &;
+      position: relative;
+      opacity: 1;
+      width: remy(16);
+      height: remy(16);
+      background-color: var(--color-accent);
+      &:not(:first-child)::after {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        content: "";
+        height: remy(6);
+        transform: translateY(-50%);
+        background-color: var(--color-accent);
+        z-index: -1;
+        width: var(--pagination-connector-width);
+      }
+
+      svg {
+        width: remy(10);
+        height: remy(8);
+        opacity: 1
+      }
+
+      &-active {
+        width: remy(10);
+        height: remy(10);
+        position: relative;
+        background-color: var(--color-accent);
+        &::before {
+          content: "";
+          position: absolute;
+          width: 210%;
+          height: 210%;
+          top: 50%;
+          left: 50%;
+          background-image: radial-gradient(
+                          circle,
+                          var(--color-accent-50) 0%,       /* внутренний круг — 50% */
+                          var(--color-accent-50) 49%,      /* до сюда сохраняется 50% */
+                          var(--color-accent-10) 50%,      /* с этого момента — 10% */
+                          var(--color-accent-10) 100%      /* внешний край — 10% */
+          );
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+        }
+
+        svg {
+          opacity: 0
+        }
+
+        ~ #{$bullet} {
+          width: remy(16);
+          height: remy(16);
+          background-color: var(--color-grey);
+          &:not(:first-child)::after {
+            background-color: var(--color-grey);
+          }
+
+          svg {
+            opacity: 0;
+          }
+
+        }
+      }
+    }
+  }
+}
